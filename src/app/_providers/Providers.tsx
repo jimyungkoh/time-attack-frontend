@@ -1,9 +1,10 @@
 "use client"
 
+import { logOut, refresh } from "@/api/auth.api";
 import AuthContext from "@/contexts/auth.context";
 import { store } from "@/redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
@@ -35,8 +36,21 @@ function ReduxProvider({ children }: { children: React.ReactNode }) {
 function AuthProvider({ children } : {children: React.ReactNode}) {
   const [signedIn, setSignedIn] = useState(false);
 
-  const signIn = () => setSignedIn(true);
-  const signOut = () => setSignedIn(false);
+  const signIn = () => {
+    setSignedIn(true);
+  };
+  
+  const signOut = () => {
+    logOut();
+    setSignedIn(false);
+  }
+
+  useEffect(() => {
+    refresh().then((result) => {
+      setSignedIn(result);
+    });    
+  },[]);
+
 
   const value = useMemo(
     () => ({

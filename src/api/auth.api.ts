@@ -15,3 +15,13 @@ export const signUp = async (signUpForm: SignUpDto) => {
 export const logIn = async (logInDto: LogInDto) => {
   return await client.post("/auth/log-in", logInDto);
 };
+
+export const logOut = async () => {
+  return await client.delete("/auth/log-out");
+};
+
+export const refresh = async () => {
+  return await client
+    .get("/auth/refresh-token")
+    .then((result) => result.data.result);
+};
