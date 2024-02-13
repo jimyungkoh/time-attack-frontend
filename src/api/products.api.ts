@@ -7,12 +7,12 @@ const client = axios.create({
   timeout: 30_000,
 });
 
-export const getProducts = async (): Promise<Product[]> => {
+export const getProducts = async (
+  brandId: string | null
+): Promise<Product[]> => {
   const products = await client
-    .get(`/products`)
+    .get(!brandId ? `/products` : `/brands/${brandId}`)
     .then((result) => result.data.result);
-
-  console.log(products);
 
   return products;
 };

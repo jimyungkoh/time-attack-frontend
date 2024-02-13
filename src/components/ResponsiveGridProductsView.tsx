@@ -4,10 +4,10 @@ import { getProducts } from "@/api/products.api";
 import { useQuery } from "@tanstack/react-query";
 import ResponsiveGridProductsViewItem from "./ResponsiveGridProductsViewItem";
 
-export default function ResponsiveGridProductsView() {
+export default function ResponsiveGridProductsView({brandId = null}:{brandId: string |null}) {
     const { data } = useQuery({
         queryKey: ["products"],
-        queryFn: getProducts,
+        queryFn: () => getProducts(brandId)
     });
 
     const products = data;
