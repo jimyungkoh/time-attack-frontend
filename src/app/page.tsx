@@ -5,7 +5,7 @@ export default function Home() {
     <h2 className="font-bold text-3xl text-center my-12">
       Trending
     </h2>
-    <ResponsiveGridProductsView/>
+    <ResponsiveGridProductsView brandId={null}/>
   </>
 }
 

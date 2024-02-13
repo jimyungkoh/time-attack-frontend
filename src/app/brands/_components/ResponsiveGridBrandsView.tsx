@@ -20,7 +20,7 @@ export default function ResponsiveGridBrandsView() {
                     <Link href="/brands" className="brand-link font-bold">ALL</Link>
                 </li>
                 {brands.map((brand) => (
-                    <ResponsiveGridBrandsViewItem brand={brand}/>
+                    <ResponsiveGridBrandsViewItem key={brand.id} brand={brand}/>
                 ))}
             </ul>
         </nav>
