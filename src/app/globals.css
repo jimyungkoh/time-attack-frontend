@@ -93,4 +93,8 @@
   .nav-link {
     @apply font-medium text-gray-800 hover:text-black transition;
   }
+
+  .brand-link {
+    @apply text-slate-700 data-[active=true]:text-black data-[active=true]:font-semibold hover:text-black transition-all;
+  }
 }
