@@ -12,7 +12,8 @@ export const getProducts = async (
 ): Promise<Product[]> => {
   const products = await client
     .get(!brandId ? `/products` : `/brands/${brandId}`)
-    .then((result) => result.data.result);
+    .then((result) => result.data.result)
+    .then((products) => (!brandId ? products : products.products));
 
   return products;
 };
