@@ -3,7 +3,7 @@ import convertToKRW from "@/utils/moneyFormatter";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ResponsiveGridViewProduct({ product }: { product: Product }) {
+export default function ResponsiveGridProductsViewItem({ product }: { product: Product }) {
     return (
         <Link href={`/products/{product.id}`} className="relative flex flex-col group">
             <div className="aspect-[3/4] relative mb-4">
