@@ -8,5 +8,11 @@ const client = axios.create({
 });
 
 export const getProducts = async (): Promise<Product[]> => {
-  return (await client.get(`/products`)).data.result;
+  const products = await client
+    .get(`/products`)
+    .then((result) => result.data.result);
+
+  console.log(products);
+
+  return products;
 };
