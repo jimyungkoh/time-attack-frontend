@@ -7,7 +7,7 @@ export default function BrandsPage() {
             <h2 className="font-bold text-3xl text-center my-12">
                 Brands
             </h2>
-            <ResponsiveGridBrandsView/>
+            <ResponsiveGridBrandsView activeBrandId={null}/>
             <ResponsiveGridProductsView brandId={null}/>
         </>
     );

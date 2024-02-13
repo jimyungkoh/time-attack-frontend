@@ -7,7 +7,7 @@ export default function BrandPage({params: {brandId}}:{params:{brandId: string}}
             <h2 className="font-bold text-3xl text-center my-12">
                 Brands
             </h2>
-            <ResponsiveGridBrandsView/>
+            <ResponsiveGridBrandsView activeBrandId={parseInt(brandId)}/>
             <ResponsiveGridProductsView brandId={brandId}/>
         </>
     );
