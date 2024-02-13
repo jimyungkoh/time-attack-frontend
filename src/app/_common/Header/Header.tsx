@@ -12,8 +12,8 @@ export default function Header() {
         </ul>
       </nav>
       <div className="ml-auto flex items-center gap-x-4">
-        <Link className="nav-link" href="/auth/log-in">회원가입</Link>
-        <Link className="nav-link" href="/auth/sign-up">로그인</Link>
+        <Link className="nav-link" href="/auth/sign-up">회원가입</Link>
+        <Link className="nav-link" href="/auth/log-in">로그인</Link>
       </div>
     </header>
   );

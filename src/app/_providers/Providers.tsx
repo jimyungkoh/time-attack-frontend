@@ -1,14 +1,17 @@
 "use client"
 
+import AuthContext from "@/contexts/auth.context";
 import { store } from "@/redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import React from "react";
+import React, { useMemo, useState } from "react";
 import { Provider } from "react-redux";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
     <ReactQueryProvider>
-      <ReduxProvider>{children}</ReduxProvider>
+      <AuthProvider>
+        <ReduxProvider>{children}</ReduxProvider>
+      </AuthProvider>
     </ReactQueryProvider>
   );
 }
@@ -26,4 +29,23 @@ function ReactQueryProvider({
 
 function ReduxProvider({ children }: { children: React.ReactNode }) {
   return <Provider store={store}>{children}</Provider>;
+}
+
+
+function AuthProvider({ children } : {children: React.ReactNode}) {
+  const [signedIn, setSignedIn] = useState(false);
+
+  const signIn = () => setSignedIn(true);
+  const signOut = () => setSignedIn(false);
+
+  const value = useMemo(
+    () => ({
+      signedIn,
+      signIn,
+      signOut,
+    }),
+    [signedIn]
+  );
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
