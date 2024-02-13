@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ResponsiveGridProductsViewItem({ product }: { product: Product }) {
     return (
-        <Link href={`/products/{product.id}`} className="relative flex flex-col group">
+        <Link href={`/products/${product.id}`} className="relative flex flex-col group">
             <div className="aspect-[3/4] relative mb-4">
                 <Image src={product.imgSrc} alt={`${product.id}`} priority fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" quality={80} className="object-cover hover:scale-[1.07] duration-500"/>
             </div>
