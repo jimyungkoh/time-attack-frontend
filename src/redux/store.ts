@@ -1,6 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { Provider } from "react-redux";
+import { utilsReducer } from "./reducers/utils.slice";
 
 export const store = configureStore({
-  reducer: {},
+  reducer: {
+    utils: utilsReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });

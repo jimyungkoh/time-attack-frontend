@@ -1,16 +1,8 @@
-"use client"
-
 import { getProducts } from "@/api/products.api";
-import { useQuery } from "@tanstack/react-query";
 import ResponsiveGridProductsViewItem from "./ResponsiveGridProductsViewItem";
 
-export default function ResponsiveGridProductsView({brandId = null}:{brandId: string |null}) {
-    const { data } = useQuery({
-        queryKey: ["products"],
-        queryFn: () => getProducts(brandId)
-    });
-
-    const products = data;
+export default async function ResponsiveGridProductsView({brandId = null}:{brandId: string |null}) {
+    const products = await fetchProducts({brandId});
 
     return (
         products && <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-8 gap-y-12">
@@ -19,4 +11,8 @@ export default function ResponsiveGridProductsView({brandId = null}:{brandId: st
             ))}
         </ul>
     );
+}
+
+async function fetchProducts({brandId = null}:{brandId: string |null}) {
+    return await getProducts(brandId);
 }

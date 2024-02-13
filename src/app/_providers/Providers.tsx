@@ -4,7 +4,7 @@ import AuthContext from "@/contexts/auth.context";
 import { store } from "@/redux/store";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import React, { useMemo, useState } from "react";
-import { Provider } from "react-redux";
+import { Provider, TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 
 export default function Providers({ children }: { children: React.ReactNode }) {
   return (
@@ -49,3 +49,10 @@ function AuthProvider({ children } : {children: React.ReactNode}) {
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
+
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export const useAppDispatch: () => AppDispatch = useDispatch;
+export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;

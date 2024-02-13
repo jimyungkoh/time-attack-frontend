@@ -1,6 +1,18 @@
+import { useAppDispatch } from "@/app/_providers/Providers";
+import { useAuth } from "@/contexts/auth.context";
+import { setModal } from "@/redux/reducers/utils.slice";
 import Link from "next/link";
+import LogInModal from "./_components/LogInModal";
 
 export default function Header() {
+  const dispatch = useAppDispatch();
+  const { signedIn } = useAuth();
+  
+  const handleClickLogIn = () => {
+    const action = setModal(<LogInModal />);
+    dispatch(action);
+  };
+
   return (
     <header className="bg-white sticky top-0 h-16 border-b flex items-center px-5 lg:px-8 z-10 shrink-0">
       <Link href="/" className="font-bold text-2xl">
@@ -12,8 +24,14 @@ export default function Header() {
         </ul>
       </nav>
       <div className="ml-auto flex items-center gap-x-4">
-        <Link className="nav-link" href="/auth/sign-up">회원가입</Link>
-        <Link className="nav-link" href="/auth/log-in">로그인</Link>
+        {!signedIn ? <>
+          <Link className="nav-link" href="/auth/sign-up">회원가입</Link>
+          <button className="nav-link" onClick={handleClickLogIn}>로그인</button>
+        </> : <>
+          {/* <Link className="nav-link" href="/">회원가입</Link>
+          <button className="nav-link" onClick={handleClickLogOut}>로그아웃</button> */}
+        </>}
+        
       </div>
     </header>
   );

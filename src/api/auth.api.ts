@@ -1,3 +1,4 @@
+import { LogInDto } from "@/types/logInDto.type";
 import { SignUpDto } from "@/types/signUpDto.type";
 import axios from "axios";
 
@@ -9,4 +10,8 @@ const client = axios.create({
 
 export const signUp = async (signUpForm: SignUpDto) => {
   return await client.post("/auth/sign-up", signUpForm);
+};
+
+export const logIn = async (logInDto: LogInDto) => {
+  return await client.post("/auth/log-in", logInDto);
 };
