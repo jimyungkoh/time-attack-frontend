@@ -1,8 +1,7 @@
-import { getProducts } from "@/api/products.api";
+import { Product } from "@/types/product.type";
 import ResponsiveGridProductsViewItem from "./ResponsiveGridProductsViewItem";
 
-export default async function ResponsiveGridProductsView({brandId = null}:{brandId: string |null}) {
-    const products = await fetchProducts({brandId});
+export default async function ResponsiveGridProductsView({brandId = null, products}:{brandId: string |null, products:Product[]}) {
 
     return (
         products && <ul className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-x-8 gap-y-12">
@@ -11,8 +10,4 @@ export default async function ResponsiveGridProductsView({brandId = null}:{brand
             ))}
         </ul>
     );
-}
-
-async function fetchProducts({brandId = null}:{brandId: string |null}) {
-    return await getProducts(brandId);
 }
